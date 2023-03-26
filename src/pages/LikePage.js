@@ -8,6 +8,7 @@ import { cleanup } from "@testing-library/react";
 
 const LikePage = () => {
   const [listData, setListData] = useState([]);
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     let moviesId = window.localStorage.movies
@@ -17,7 +18,7 @@ const LikePage = () => {
     for (let i = 0; i < moviesId.length; i++) {
       axios
         .get(
-          `https://api.themoviedb.org/3/movie/${moviesId[i]}?api_key=ed82f4c18f2964e75117c2dc65e2161d&language=fr-FR`
+          `https://api.themoviedb.org/3/movie/${moviesId[i]}?api_key=${apiKey}d&language=fr-FR`
         )
         .then((res) => setListData((listData) => [...listData, res.data]));
     }
